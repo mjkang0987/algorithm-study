@@ -1,1 +1,1 @@
-# Algorithm Study
+# Javascript Algorithm Study
