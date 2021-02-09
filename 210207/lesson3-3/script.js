@@ -1,15 +1,20 @@
 const solution = (arr) => {
+  if (arr.length === 1) return arr[0];
   let result = [];
-  const length = arr.length;
+  const total = arr.reduce((prev, curr) => prev + curr);
 
-  for (let i = 1; i < length; i++) {
-    const start = arr.slice(0, i).reduce((a, b) => a + b);
-    const end = arr.slice(i, arr.length).reduce((a, b) => a + b);
-    const rest = start - end < 0 ? -(start - end) : start - end;
-    result = [...result, rest];
-  }
-  return Math.min.apply(null, result);
+  arr.reduce((prev, curr) => {
+    const rest = total - prev;
+    result.push(Math.abs(rest - prev));
+    return prev + curr;
+  });
+
+  result.sort((a, b) => a - b);
+
+  return result[0];
 };
 
 solution([3, 1, 2, 4, 3]);
 solution([3, 1, 2, 4, 3]);
+solution([-1000, 1000]);
+solution([-10, -20, -30, -40, 100]);
