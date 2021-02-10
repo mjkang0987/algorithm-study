@@ -1,6 +1,9 @@
 const solution = (x, a) => {
-  const arr = new Array(x).fill(0);
+  const arr = [];
   let max = 0;
+
+  for (let i = 0; i < x; i ++) arr[i] = 0;
+
   a.map((r) => {
     const num = r - 1;
     if (r < x) {
