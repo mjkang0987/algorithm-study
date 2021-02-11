@@ -1,18 +1,23 @@
-const solution = (a) => {
-  const str = a.toString(2).replace(/1/gi, "_");
-
-  if (str.indexOf("0") < 0) return 0;
-  if (str.indexOf("_") === str.lastIndexOf("_")) return 0;
-
-  const arr = str.toString().split("_");
-  if (str[str.length - 1] === "0") arr.pop();
+const move = (arr) => {
   const length = arr.length;
-  let max = 0;
-  for (let i = 0; i < length; i++) {
-    if (max < arr[i].length) {
-      max = arr[i].length;
-    }
+  const last = arr[length - 1];
+  arr.pop();
+  arr.unshift(last);
+  return arr;
+};
+
+const solution = (a, k) => {
+  if (a === undefined || a.length === 0 || typeof a !== "object") {
+    return [];
+  }
+  let arr = a;
+  for (let i = 0; i < k; i++) {
+    arr = move(arr);
   }
 
-  return max;
+  return arr;
 };
+
+solution(3);
+solution([1, 2, 3], 1);
+solution([0, 0, 0], 1);
