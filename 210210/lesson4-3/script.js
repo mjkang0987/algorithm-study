@@ -1,22 +1,17 @@
 const solution = (a) => {
   const arr = new Set(a);
-  const max = Math.max(...arr);
+  if (!arr.has(1)) return 1;
   const size = arr.size;
   let result;
-
-  for (let i = 1; i <= size; i++) {
-    // console.log(i);
-    if (!arr.has(i)) {
-      result = i;
-    } else {
-      result = size + 1;
-    }
+  const b = new Set();
+  for (let i = 0; i <= size; i++) {
+    b.add(i + 1);
   }
 
-  if (max < 0) result = 1;
+  result = [...b].filter((a) => !arr.has(a));
 
-  console.log(`result: ${result}`);
-  return result;
+  // console.log(`result: ${result}`);
+  return result[0];
 };
 
 solution([1, 3, 6, 4, 1, 2]);
